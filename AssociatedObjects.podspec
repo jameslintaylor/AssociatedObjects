@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   EOS
 
   s.homepage = "https://github.com/jameslintaylor/AssociatedObjects"
-  s.license = { :type => "MIT", :file => "license.md" }
+  s.license = { :type => "MIT", :file => "LICENSE.md" }
 
   s.author = "James Taylor"
   s.social_media_url   = "http://twitter.com/jameslintaylor"
