@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AssociationPolicy: UInt {
+public enum AssociationPolicy: UInt {
     // raw values map to objc_AssociationPolicy's raw values
     case assign = 0
     case copy = 771
@@ -21,9 +21,9 @@ enum AssociationPolicy: UInt {
     }
 }
 
-protocol AssociatedObjects: class {}
+public protocol AssociatedObjects: class {}
 
-extension AssociatedObjects {
+public extension AssociatedObjects {
     /// wrapper around `objc_getAssociatedObject`
     func getAssociatedObject(key key: UnsafePointer<Void>) -> AnyObject? {
         return objc_getAssociatedObject(self, key)
