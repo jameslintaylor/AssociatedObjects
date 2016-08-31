@@ -1,0 +1,14 @@
+.DS_Store
+
+# Don't check in any carthage builds / dependency source code
+Carthage/Build/
+Carthage/Checkouts/
+
+# Build generated
+build/
+derivedData/
+
+# Other
+*.moved-aside
+*.xcuserstate
+*.xcuserdatad
