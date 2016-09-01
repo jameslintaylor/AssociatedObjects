@@ -39,7 +39,7 @@ a.setAssociatedObject(b, key: &key)
 a.getAssociatedObject(key: &key)
 ```
 
-### association policies
+### association policies...
 `setAssociatedObject` takes an optional `policy` parameter. this determines how the new associated object should be referenced by the owner
 ```swift
 enum AssociationPolicy {
