@@ -16,7 +16,7 @@ public enum AssociationPolicy: UInt {
     case retain = 769
     case retainNonatomic = 1
     
-    private var objc: objc_AssociationPolicy {
+    fileprivate var objc: objc_AssociationPolicy {
         return objc_AssociationPolicy(rawValue: rawValue)!
     }
 }
@@ -25,11 +25,11 @@ public protocol AssociatedObjects: class {}
 
 public extension AssociatedObjects {
     /// wrapper around `objc_getAssociatedObject`
-    func getAssociatedObject(key key: UnsafePointer<Void>) -> AnyObject? {
-        return objc_getAssociatedObject(self, key)
+    func getAssociatedObject(_ key: UnsafeRawPointer) -> AnyObject? {
+        return objc_getAssociatedObject(self, key) as AnyObject
     }
     /// wrapper around `objc_setAssociatedObject`
-    func setAssociatedObject(object: AnyObject, key: UnsafePointer<Void>, policy: AssociationPolicy = .retainNonatomic) {
+    func setAssociatedObject(_ object: AnyObject, key: UnsafeRawPointer, policy: AssociationPolicy = .retainNonatomic) {
         objc_setAssociatedObject(self, key, object, policy.objc)
     }
     /// wrapper around 'objc_removeAssociatedObjects'
