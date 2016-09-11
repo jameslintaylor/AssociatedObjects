@@ -25,7 +25,7 @@ public protocol AssociatedObjects: class {}
 
 public extension AssociatedObjects {
     /// wrapper around `objc_getAssociatedObject`
-    func getAssociatedObject(_ key: UnsafeRawPointer) -> AnyObject? {
+    func getAssociatedObject(key: UnsafeRawPointer) -> AnyObject? {
         return objc_getAssociatedObject(self, key) as AnyObject
     }
     /// wrapper around `objc_setAssociatedObject`
