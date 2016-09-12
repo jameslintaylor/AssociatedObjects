@@ -26,14 +26,17 @@ public protocol AssociatedObjects: class {}
 // transparent wrappers
 
 public extension AssociatedObjects {
+    
     /// wrapper around `objc_getAssociatedObject`
     func ao_get(pkey: UnsafeRawPointer) -> Any? {
         return objc_getAssociatedObject(self, pkey)
     }
+    
     /// wrapper around `objc_setAssociatedObject`
     func ao_set(_ value: Any, pkey: UnsafeRawPointer, policy: AssociationPolicy = .retainNonatomic) {
         objc_setAssociatedObject(self, pkey, value, policy.objc)
     }
+    
     /// wrapper around 'objc_removeAssociatedObjects'
     func ao_removeAll() {
         objc_removeAssociatedObjects(self)
@@ -43,13 +46,15 @@ public extension AssociatedObjects {
 // string key managed wrappers
 
 fileprivate class MutableBox<T> {
+    
     private(set) var value: T
+    
     init(_ value: T) {
         self.value = value
     }
     
     // accepts a closure that can mutate `value` from within
-    func mutate(f: (inout T) throws -> ()) rethrows {
+    func mutate(f: (inout T) throws -> Void) rethrows {
         try f(&value)
     }
 }
@@ -69,6 +74,7 @@ fileprivate extension AssociatedObjects {
 }
 
 public extension AssociatedObjects {
+    
     /// `String` key managed wrapper around `objc_setAssociatedObject`
     func ao_set(_ value: Any, key: String) {
         key.withCString { p in
@@ -77,6 +83,7 @@ public extension AssociatedObjects {
             keybox.mutate { $0[key] = p }
         }
     }
+    
     /// `String` key managed wrapper around `objc_getAssociatedObject`
     func ao_get(key: String) -> Any? {
         guard let p = keybox.value[key] else { return nil }

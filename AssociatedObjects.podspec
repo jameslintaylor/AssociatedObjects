@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = "AssociatedObjects"
-  s.version = "1.0.0"
+  s.version = "1.0.0-beta.2"
   s.summary = "swift wrappers for objc's runtime associated objects"
   s.description = <<-EOS
   AssociatedObjects provides wrappers around `objc_getAssociatedObject`,
