@@ -68,7 +68,7 @@ fileprivate extension AssociatedObjects {
     }
 }
 
-extension AssociatedObjects {
+public extension AssociatedObjects {
     /// `String` key managed wrapper around `objc_setAssociatedObject`
     func ao_set(_ value: Any, key: String) {
         key.withCString { p in
